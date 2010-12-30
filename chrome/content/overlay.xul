@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet href="chrome://sitereferrer/skin/toolbarbutton.css" type="text/css"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://sitereferrer/locale/overlay.dtd">
+
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="application/javascript" src="chrome://sitereferrer/content/sitereferrer.js"/>
+	
+	<!--
+	<toolbarpalette id="BrowserToolbarPalette">
+		<toolbaritem id="urlbox-button"
+			class="chromeclass-toolbar-additional"
+			label="&urlbox.label;"
+			align="center">
+			
+			<label id="urlbox-label"
+				crop="center"
+				value=""
+				flex="1"/>
+		</toolbaritem>
+	</toolbarpalette>
+	-->
+</overlay>

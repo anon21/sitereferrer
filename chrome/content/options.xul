@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://sitereferrer/skin/options.css" type="text/css"?>
+
+<!DOCTYPE prefwindow SYSTEM "chrome://sitereferrer/locale/options.dtd">
+
+<prefwindow xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	id="sitereferrer-prefwindow"
+	title="&sitereferrer.options.title;"
+	width="480"
+	height="320"
+	orient="vertical"
+	buttons="accept,cancel">
+	
+	<script type="application/javascript" src="chrome://sitereferrer/content/options.js"/>
+	
+	<prefpane id="sitereferrer-prefpane">
+		<preferences>
+			<preference id="sitereferrer-sites-pref"
+				name="extensions.sitereferrer.sites"
+				type="string"/>
+			
+			<preference id="sitereferrer-default-behavior-pref"
+				name="extensions.sitereferrer.defaultBehavior"
+				type="int"/>
+		</preferences>
+		
+		<listbox preference="sitereferrer-sites-pref"
+			seltype="multiple">
+			
+			<listhead>
+				<listheader label="&sitereferrer.options.matchType;"/>
+				<listheader label="&sitereferrer.options.pattern;"/>
+				<listheader label="&sitereferrer.options.behavior;"/>
+			</listhead>
+		</listbox>
+		
+		<hbox align="baseline">
+			<label class="sitereferrer-options-label"
+				value="&sitereferrer.options.defaultBehavior;"
+				control="sitereferrer-default-behavior-menulist"/>
+			
+			<menulist id="sitereferrer-default-behavior-menulist"
+				class="sitereferrer-options-item"
+				preference="sitereferrer-default-behavior-pref">
+				
+				<menupopup>
+					<menuitem label="&sitereferrer.options.behaviorNormal;" value="0"/>
+					<menuitem label="&sitereferrer.options.behaviorBlock;" value="1"/>
+					<menuitem label="&sitereferrer.options.behaviorForge;" value="2"/>
+				</menupopup>
+			</menulist>
+		</hbox>
+	</prefpane>
+</prefwindow>

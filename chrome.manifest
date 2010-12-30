@@ -1,0 +1,14 @@
+content sitereferrer chrome/content/
+
+locale sitereferrer en-US chrome/locale/en-US/
+locale sitereferrer ja-JP chrome/locale/ja-JP/
+
+skin sitereferrer classic/1.0 chrome/skin/
+
+overlay chrome://browser/content/browser.xul chrome://sitereferrer/content/overlay.xul
+
+style chrome://global/content/customizeToolbar.xul chrome://sitereferrer/skin/toolbarbutton.css
+
+component {ce4dd6ab-f9fb-4132-8f72-af90bb1be9e6} components/sitereferrer.js
+contract @anon21/sitereferrer;1 {ce4dd6ab-f9fb-4132-8f72-af90bb1be9e6}
+category profile-after-change SiteReferrer @anon21/sitereferrer;1

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+	
+	<Description about="urn:mozilla:install-manifest">
+		<em:name>Site Referrer</em:name>
+		<em:id>{3ae7bfbf-c520-43d2-b781-a72dc5ef3aa3}</em:id>
+		<em:version>0.1.0</em:version>
+		<em:type>2</em:type>
+		<em:description></em:description>
+		<em:creator>anon21</em:creator>
+		<em:optionsURL>chrome://sitereferrer/content/options.xul</em:optionsURL>
+		
+		<em:targetApplication>
+			<Description>
+				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+				<em:minVersion>4.0b8</em:minVersion>
+				<em:maxVersion>4.0b8</em:maxVersion>
+			</Description>
+		</em:targetApplication>
+		
+		<em:localized>
+			<Description>
+				<em:locale>ja-JP</em:locale>
+				<em:name>Site Referrer</em:name>
+				<em:description>サイトごとにリファラの送信設定を行います。</em:description>
+			</Description>
+		</em:localized>
+	</Description>
+</RDF>
