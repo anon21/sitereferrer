@@ -26,7 +26,7 @@ function siteReferrerComponent() {
 	
 	// 正規表現のメタ文字をエスケープする
 	function metaCharEscape(str) {
-		return str.replace(/[.?\\()\[\]{}]/g, function(m) {
+		return str.replace(/[.*+?\\()\[\]{}]/g, function(m) {
 				return "\\" + m;
 			});
 	}
@@ -36,11 +36,11 @@ function siteReferrerComponent() {
 		var patStr;
 		
 		switch( site.type ) {
-		case 0: // ドメイン名
-			patStr = "^.*?://[^/]*?" + metaCharEscape(site.pattern);
+		case 0: // ホスト名
+			patStr = "^.*?://.*?" + metaCharEscape(site.pattern) + "(/|$)";
 			break;
 		case 1: // ワイルドカード
-			patStr = metaCharEscape(site.pattern).replace("*", ".*").replace("?", ".");
+			patStr = metaCharEscape(site.pattern.replace("*", ".*").replace("?", "."));
 			break;
 		case 2: // 正規表現
 			patStr = site.pattern;
@@ -69,13 +69,13 @@ function siteReferrerComponent() {
 			
 			if( patStr ) {
 				switch( sites[i].behavior ) {
-				case 0:
+				case 0: // 通常の動作
 					normalSitePatStr += "|(" + patStr + ")";
 					break;
-				case 1:
+				case 1: // ブロック
 					blockSitePatStr += "|(" + patStr + ")";
 					break;
-				case 2:
+				case 2: // 偽装
 					forgeSitePatStr += "|(" + patStr + ")";
 					break;
 				}
@@ -86,9 +86,13 @@ function siteReferrerComponent() {
 		LOG("blockSitePat_=" + blockSitePatStr.substr(1));
 		LOG("forgeSitePat_=" + forgeSitePatStr.substr(1));
 		
-		normalSitePat_ = new RegExp(normalSitePatStr.substr(1));
-		blockSitePat_ = new RegExp(blockSitePatStr.substr(1));
-		forgeSitePat_ = new RegExp(forgeSitePatStr.substr(1));
+		try {
+			normalSitePat_ = new RegExp(normalSitePatStr.substr(1));
+			blockSitePat_ = new RegExp(blockSitePatStr.substr(1));
+			forgeSitePat_ = new RegExp(forgeSitePatStr.substr(1));
+		} catch(e) {
+			
+		}
 	}
 	
 	// preference読み込み
@@ -125,17 +129,13 @@ function siteReferrerComponent() {
 		var behavior;
 		
 		if( uriSpec.match(normalSitePat_) ) {
-			// 通常の動作(何もしない)
-			behavior = 0;
+			behavior = 0; // 通常の動作(何もしない)
 		} else if( uriSpec.match(blockSitePat_) ) {
-			// リファラを遮断
-			behavior = 1;
+			behavior = 1; // リファラを遮断
 		} else if( uriSpec.match(forgePat_) ) {
-			// リファラを偽装
-			behavior = 2;
+			behavior = 2; // リファラを偽装
 		} else {
-			// デフォルトの動作
-			behavior = defaultBehavior_;
+			behavior = defaultBehavior_; // デフォルトの動作
 		}
 		
 		switch( behavior ) {

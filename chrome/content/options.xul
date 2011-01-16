@@ -26,7 +26,8 @@
 				type="int"/>
 		</preferences>
 		
-		<listbox preference="sitereferrer-sites-pref"
+		<listbox id="sitereferrer-sites-listbox"
+			preference="sitereferrer-sites-pref"
 			seltype="multiple">
 			
 			<listhead>
